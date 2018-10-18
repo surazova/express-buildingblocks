@@ -31,9 +31,28 @@ $(function() {
                 block = blocks[i];
                 content = '<a href = "/blocks/' +block+ '">'+block+'</a>;
                 list.push($('<li>', {html: content }));
+                '<a href="#' data-block =" '+block+'"><img src="del.jpg"></a>;
             }
             
             $('.block-list').append(list)
         }
     
+    $(function() {
+        
+        $('.block-list').on('click', 'a[data-block]', function(event) {
+            if(!confirm('Are you sure?')) {
+                return false;  //if cancel is clicked 
+            }
+            var target = $(event.currentTarget); //assigned to target variable 
+            
+            $.ajax({
+                type: 'DELETE', url: '/blocks/' +target.data('block')
+                
+            }).done(function() {
+                target.parents('li').remove(): //finds the parent li element and removes it 
+                
+            });
+            
+        });
+    })
 });

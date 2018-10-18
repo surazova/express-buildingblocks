@@ -11,6 +11,12 @@ var parseUrlencoded = bodyParser.urlencoded({extended: false}); //forces to use 
 
 var blocks = {...};
 
+//deleting blocks:
+
+app.delete('/blocks/:name', function(request, response) {
+    delete blocks[request.blockName];
+    response.sendStatus(200); //sets the response body to ok 
+})
 //first handler
 app.post('/blocks', parserUrlencoded, function(request, response){
     var newBlock = request.body;
