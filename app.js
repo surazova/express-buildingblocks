@@ -1,6 +1,27 @@
 var express = require('express');
 var app = express();
 
+//require body parser module 
+
+var bodyParser = requrie('body-parser');
+var app = express();
+
+var bodyParser = require('body-parser');
+var parseUrlencoded = bodyParser.urlencoded({extended: false}); //forces to use query string
+
+var blocks = {...};
+
+//first handler
+app.post('/blocks', parserUrlencoded, function(request, response){
+    var newBlock = request.body;
+    //each element in the form becomes a property of this onject 
+    blocks[newBlock.name] = newBlock.description; //adds new blocks 
+    
+    response.status(201).json(newBlock.name);
+    
+});
+
+
 var blocks = {
     'Fixed': 'Fastened securely in position', 
     'Movable': 'Capable of being moved',
